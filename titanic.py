@@ -14,29 +14,29 @@ print('Nombres de filas:', tablas_titanic.index)
 print('Últimas 10 filas:\n', tablas_titanic.tail(10))
 print('Número de elemntos:', tablas_titanic.size)
 
-# Mostrar por pantalla los datos del pasajero con identificador 148
-print(tablas_titanic.loc[148])
+#Mostrar por pantalla el porcentaje de personas que si vivieron para contarla
+print(tablas_titanic.groupby('Pclass')['Survived'].value_counts(normalize=True))
 
-# Mostrar por pantalla las filas pares del DataFrame.
-print(tablas_titanic.iloc[range(0,tablas_titanic.shape[0],2)])
-
-# Mostrar los nombres de las personas que iban en primera clase ordenadas alfabéticamente.
+# Mostrar los nombres de las personas fifi
 print(tablas_titanic[tablas_titanic["Pclass"]==1]['Name'].sort_values())
 
-# Mostrar por pantalla el porcentaje de personas que sobrevivieron y murieron
+# Mostrar por pantalla el porcentaje de personas que sobrevivieron y que estiraron la pata
 print(tablas_titanic['Survived'].value_counts()/tablas_titanic['Survived'].count() * 100)
 
 # Alternativa
 print(tablas_titanic['Survived'].value_counts(normalize=True) * 100)
 
-#Mostrar por pantalla el porcentaje de personas que sobrevivieron en cada clase
-print(tablas_titanic.groupby('Pclass')['Survived'].value_counts(normalize=True))
-
-# Eliminar del DataFrame los pasajeros con edad desconocida.
+# Eliminar del DataFrame los pasajeros con edad anonima.
 tablas_titanic.dropna(subset=['Age'])
 
 # Mostrar la edad media de las mujeres que viajaban en cada clase.
 print(tablas_titanic.groupby(['Pclass','Sex'])['Age'].mean().unstack()['female'])
 
-# Añadir una nueva columna booleana para ver si el pasajero era menor de edad o no.
+# Añadir una nueva columna booleana para ver si el pasajero era menor de edad .
 tablas_titanic['Young'] = tablas_titanic['Age'] < 18
+
+# Mostrar por pantalla los datos del pasajero con id 148
+print(tablas_titanic.loc[148])
+
+# Mostrar por pantalla las filas pares del DataFrame.
+print(tablas_titanic.iloc[range(0,tablas_titanic.shape[0],2)])
